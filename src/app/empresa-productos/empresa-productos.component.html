@@ -1,0 +1,34 @@
+<div id="perfil-empresa" [style]="{'background-image':empresa.baner}">
+    <div id="barra-perfil-empresa" class="py-2 mb-5">
+        <div id="flecha-atras" (click) = "back()" class="py-2">
+            <div id="atras-icon">
+                <fa-icon [icon] = "faArrowLeft"></fa-icon>
+            </div>
+        </div>
+    </div>
+    <div id="informacion-perfil-empresa">
+        <div class="imagen-perfil-empresa">
+            <img [src]="empresa.imagen" alt="" style="width: 100%;">
+        </div>
+        <div id="datos-perfil-empresa" class="py-2 pt-2 px-4">
+            <h4 style="font-weight: bold;margin-bottom: 0rem;">{{empresa.nombres}}</h4>
+            <span>{{empresa.correo}}</span>
+        </div>
+    </div>
+    <div style="text-align: center;" class="pt-3">
+        {{empresa.descripcion}}
+    </div>
+    <hr style="margin-inline:10px;">
+    <div id="estrellas-perfil-empresa">
+        <fa-icon class="px-1" *ngFor="let i of ' '.repeat(empresa.calificacion).split(''), let x = index"  [icon] = "fasStar"></fa-icon>
+        <fa-icon class="px-1" *ngFor="let i of ' '.repeat(5-empresa.calificacion).split(''), let x = index" [icon] = "farStar"></fa-icon>
+    </div>
+    <hr style="margin-inline:10px;">
+    <main id="contenedor-perfil-empresa">
+        <div style="text-align: start;">
+            <h5 style=" font-weight: bold;">Productos</h5>
+        </div>
+        <app-productos (OnAgregarCarrito)="agregarNotificacion($event)"></app-productos>
+        <app-footer #footer></app-footer>
+    </main>
+</div>

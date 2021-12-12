@@ -1,0 +1,53 @@
+<main id="main-carrito">
+    <app-barra-retroceso></app-barra-retroceso>
+    <div id="contenedor-productos" class="mt-5">
+        <div id="productos-carrito">
+            <p id="titulo-carrito">Carrito de compras</p>
+            <div class="carrito my-2 px-1" *ngFor="let item of productosLocalStorage">
+                <div class="item" id="item-img">
+                    <img [src]="item.imagen" style="max-width: 50px;">
+                </div>
+                <div style="display: flex;flex-direction: column;justify-content: center;">
+                    <div id="item-nombre">
+                        {{item.nombre}}
+                    </div>
+                    <div id="item-descripcion" style="font-size: 15px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;width: 150px;">
+                        {{item.descripcion}}
+                    </div>
+                    <div id="item-precio">
+                        {{item.precio}}
+                    </div>
+                </div>
+                <div id="item-botones">
+                    <div id="borrar">
+                        <div id="item-borrar" (click)="eliminarProductoCarrito(item.id)"><fa-icon [icon]='faTimes'></fa-icon></div>
+                    </div>
+                    <div id="item-cantidad">
+                        <button class="cambiar-cantidad" (click)="minus(item.id)"><fa-icon  style="color: grey;" [icon]='faMinus'></fa-icon></button>
+                        <input id="cant" type="number" min="1" max="100" [(ngModel)]="item.cantidad" disabled>
+                        <button class="cambiar-cantidad" (click)="plus(item.id)"><fa-icon  style="color: grey;" [icon]='faPlus'></fa-icon></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fixed-bottom" style="background-color: white; height: 13%;">
+            <div class="fixed-bottom total-compra pt-3" style="background-color: rgba(254, 185, 73, 0.2);">
+                <div id="total">
+                    <p id="pagar">Total a pagar</p>
+                    <p id="pagar-cantidad">L. {{total}}</p>
+                </div>
+                <div id="siguiente">
+                    <button class="btn btn-primary" id="btn-siguiente" [disabled] = "!datos" (click)="confirmarCompra()" >Siguiente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<ngx-spinner
+    bdColor="rgba(255,255,255,.9)"
+    size = "large"
+    color = "#FEB949"
+    type="ball-fussion"
+    [fullScreen] = "true"
+    >
+</ngx-spinner>
